@@ -1,0 +1,22 @@
+<!-- Vue de la page d'accueil de l'appication -->
+<h1>HI <%= params[:id] %> ! WELCOME TO THE GOSSIPS CENTER :</h1>
+
+<!-- Boucle qui parcours tous les gossips -->
+<% @gossips.each do |gossip|%>
+<!-- Affichage des information de chaques gossips -->
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">AUTHOR : 
+            <%= @users.find(gossip.user_id).first_name %></h5>
+            <p class="card-text"><%= gossip.title %></p>
+
+<!-- Liens vers les différentes pages qui dépendent du gossip -->
+            <%= link_to "Go to this Gossip Page", user_gossip_path(gossip.user_id, gossip.id), :class => "btn btn-primary"%>
+            
+            <%= link_to "New Gossip", new_user_gossip_path(user_id: gossip.user_id), :class => "btn btn-primary"%>
+
+            <%= link_to "Edit Gossip", edit_user_gossip_path(gossip.user_id, gossip.id), :class => "btn btn-secondary" %>
+
+        </div>
+    </div>
+<% end %>

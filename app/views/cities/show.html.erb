@@ -1,0 +1,20 @@
+<!-- La vue affiche le nom de la ville ainsi que tous les gossips des users qui habitent cette ville -->
+<h1>City: <%= @city.name %></h1><br />
+  <h5 class="card-title">All Gossip from <%= @city.name %>:</h5><br />
+
+    <!-- Boucle qui parcours le tableau qui contient les numéros des users qui ont écrit un gossip dans la city -->
+
+    <% @users_by_city_id.each do |user_number| %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Title :</h5> 
+            <%= @gossips.find_by(user_id: user_number).title%><br /><br />
+            <h5 class="card-title">Content :</h5> 
+            <%= @gossips.find_by(user_id: user_number).content%>
+            <%=%>
+          </div>
+        </div>
+    <% end %>    
+
+  </div>
+</div>

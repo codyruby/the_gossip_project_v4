@@ -1,0 +1,16 @@
+<h1>NEW GOSSIP :</h1>
+
+<%= form_with url: user_gossips_path do |form| %>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Title : 
+            <%= form.text_field :title %>
+            <h5 class="card-title">Content : 
+            <%= form.text_field :content %>
+             <div class="form-item">
+                    <%=select_tag :tag_id, options_from_collection_for_select(@tags, "id", "title"), include_blank: 'Tags'%>
+            </div>
+            <p><%= form.submit %></p>
+        </div>
+    </div>
+<% end %>

@@ -1,0 +1,21 @@
+<!-- Titre de la vue d'un user -->
+<h1>User Page</h1>
+
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">First name:</h5>
+        <p class="card-text"><%= @user.first_name %></p>
+        <h5 class="card-title">Last name:</h5>
+        <p class="card-text"><%= @user.last_name %></p>
+        <h5 class="card-title">Description:</h5>
+        <p class="card-text"><%= @user.description %></p>
+        <h5 class="card-title">E-mail:</h5>
+        <p class="card-text"><%= @user.email %></p>
+        <h5 class="card-title">Age:</h5>
+        <p class="card-text"><%= @user.age %></p>  
+        <h5 class="card-title">City:</h5>
+        <p class="card-text"><%= @city.name %></p>
+        <!-- Liens vers la page City qui dépend du user -->
+        <%= link_to "Go to the City Page", city_path(id: @city.id), :class => "btn btn-primary" %><br /><br />
+      </div>
+    </div>

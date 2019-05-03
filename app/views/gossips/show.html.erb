@@ -1,0 +1,48 @@
+<!-- La vue d'un gossip -->
+
+<!-- Titre de la vue d'un gossip avec le numéro du gossip -->
+<h1>Gossip <%= params[:id] %></h1>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">Title : 
+    <%= @gossip.title %></h3>
+    <h5 class="card-title">Content:</h5>
+    <p class="card-text"><%= @gossip.content %></p>
+    <h5 class="card-title">Author:</h5>
+    <p class="card-text"><%= @user.first_name + " " + @user.last_name.upcase %></p>
+    <h5 class="card-title">City:</h5>
+    <p class="card-text"><%= @city.name %></p> 
+  </div>
+  <%= link_to "Go to this User Page", user_path(id: params[:user_id]), :class => "btn btn-primary" %>
+  <%= link_to "Delete Gossip", user_gossip_path(@gossip.user_id, @gossip.id), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+</div>
+
+<div class="card" style="width: 18rem;">
+<h4>ADD COMMENT GOSSIP :</h4>
+
+<%= form_with url: user_gossip_comments_path(user_id: params[:user_id], gossip_id: params[:id]), method: :post do |form| %>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Content : 
+            <%= form.text_field :content %>
+            <p><%= form.submit %></p>
+        </div>
+    </div>
+<% end %>
+</div>
+
+<div class="card" style="width: 18rem;">
+    <% @comments_by_gossip_id.each do |comment_number|%>
+    <!-- Affichage du contenu de chaques commentaires -->
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Comment :</h5>
+                <%= @comments.find(comment_number).content %>
+                <%= link_to "Edit Comment", edit_user_gossip_comment_path(user_id: params[:user_id], gossip_id: params[:id], id: comment_number), :class => "btn btn-secondary" %>
+                <%= link_to "Delete Gossip", user_gossip_comment_path(user_id: params[:user_id], gossip_id: params[:id], id: comment_number), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+        </div>
+    <% end %>
+</div>

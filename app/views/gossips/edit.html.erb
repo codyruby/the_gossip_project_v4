@@ -1,0 +1,16 @@
+<h1>EDIT GOSSIP :</h1>
+
+<%= form_with url: user_gossip_path, method: :put do |form| %>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Title : 
+            <%= form.text_field :title, value: @gossip.title %>
+            <h5 class="card-title">Content : 
+            <%= form.text_area :content, value: @gossip.content %>
+            <div class="form-item">
+                    <%=select_tag :tag_id, options_from_collection_for_select(@tags, "id", "title"), include_blank: 'Tags'%>
+            </div>
+            <p><%= form.submit %></p>
+        </div>
+    </div>
+<% end %>
